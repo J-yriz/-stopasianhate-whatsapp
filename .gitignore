@@ -1,0 +1,7 @@
+# modules
+node_modules
+
+# local folders
+dist
+auth_info
+yarn.lock

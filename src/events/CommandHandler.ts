@@ -14,7 +14,7 @@ const CommandHandler = async (sock: WASocket, client: ClientBot) => {
     for (const file of commandFiles) {
       const command = await import(`${commandPath}/${commandFolder}/${file}`);
       // Menambahkan command ke dalam collection
-      client.commandCollection.set(command.default.name, command.default);
+      !command.default.maintenance && client.commandCollection.set(command.default.name, command.default);
     }
   }
 };

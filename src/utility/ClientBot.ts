@@ -5,6 +5,7 @@ import makeWASocket, { proto, useMultiFileAuthState, WASocket } from "@whiskeyso
 interface ICommandCollection {
   name: string;
   description: string;
+  maintenance: boolean;
   execute: (message: proto.IWebMessageInfo, sock: WASocket) => void;
 }
 
@@ -17,7 +18,11 @@ class ClientBot {
 
     // Fungsi useMultiFileAuthState digunakan untuk membuat state folder yang bisa disimpan ke dalam file
     const { state, saveCreds } = await useMultiFileAuthState("./auth_info");
-    const sock = makeWASocket({ auth: state, printQRInTerminal: false });
+    const sock = makeWASocket({
+      browser: ["Windows", "Chrome", "11"],
+      auth: state,
+      printQRInTerminal: false,
+    });
 
     // Simpan kredensial setiap kali ada perubahan
     sock.ev.on("creds.update", saveCreds);

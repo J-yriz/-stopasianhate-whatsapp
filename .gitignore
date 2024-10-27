@@ -2,6 +2,7 @@
 node_modules
 
 # local folders
+.env
 dist
 auth_info
 yarn.lock

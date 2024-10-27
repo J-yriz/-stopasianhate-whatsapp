@@ -7,18 +7,14 @@ const MessagesReponse = (sock: WASocket, client: ClientBot) => {
     const message = msg.messages[0];
     if (message.key.fromMe || !message.message) return;
 
-    const messageContent = message.message.conversation || "";
-    if (!messageContent) {
-      await sock.sendMessage(message.key.remoteJid as string, { text: "Maaf, sedang ada gangguan. Coba lagi nanti ya!" });
-      return;
-    }
+    const messageContent = (message.message.conversation || "").toLowerCase();
+    if (!messageContent) return;
 
-    const messages = messageContent.split(config.prefix);
-    if (messages[0] === "sah") {
-      const command = client.commandCollection.get(messages[1].trim().toLowerCase());
-      command ? command.execute(message, sock) : await sock.sendMessage(message.key.remoteJid as string, { text: "Maaf, perintah tidak ditemukan!" });
-    } else {
-      await sock.sendMessage(message.key.remoteJid as string, { text: "Maaf, perintah tidak ditemukan!" });
+    // const isGroup = message.key.remoteJid?.includes("-") || false;
+    const splitMessage = messageContent.split("!")[1];
+    if (messageContent.startsWith(config.prefix) && splitMessage) {
+      const command = client.commandCollection.get(splitMessage.trim());
+      command && command.execute(message, sock);
     }
   });
 };

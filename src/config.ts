@@ -1,9 +1,13 @@
 const config = {
   // Devaloper Number
-  dev: [""],
+  devUser: [""],
+  devGrup: [""],
 
   // Prefix for commands
-  prefix: "sah!",
+  prefix: "tod!",
+
+  // Axios instance url
+  baseURL: "https://komikcast-api.vercel.app",
 };
 
 export default config;

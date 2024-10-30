@@ -1,16 +1,22 @@
 import fs from "fs";
 import path from "path";
+import axios, { AxiosInstance } from "axios";
 import makeWASocket, { proto, useMultiFileAuthState, WASocket } from "@whiskeysockets/baileys";
+import config from "../config";
 
 interface ICommandCollection {
   name: string;
   description: string;
   maintenance: boolean;
-  execute: (message: proto.IWebMessageInfo, sock: WASocket) => void;
+  execute: (message: proto.IWebMessageInfo, sock: WASocket, client: ClientBot) => void;
 }
 
 class ClientBot {
   public commandCollection: Map<string, ICommandCollection> = new Map();
+  public instance: AxiosInstance = axios.create({
+    withCredentials: true,
+    baseURL: config.baseURL,
+  });
 
   async startBot() {
     // Path ke folder events

@@ -19,6 +19,7 @@ interface IResponse {
 const search = {
   name: "manga-search",
   description: "Manga search command",
+  dmOnly: true,
   maintenance: true,
   async execute(message: proto.IWebMessageInfo, sock: WASocket, client: ClientBot) {
     const keyRemoteJid = message.key.remoteJid as string;

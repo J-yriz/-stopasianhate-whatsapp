@@ -1,4 +1,4 @@
-import config from "../config";
+import config from "../configDev";
 import ClientBot from "../utility/ClientBot";
 import { WASocket } from "@whiskeysockets/baileys";
 
@@ -18,6 +18,9 @@ const MessagesReponse = (sock: WASocket, client: ClientBot) => {
       const numberUser = ("0" + messageId.split("@")[0].slice(2)) as string;
 
       if (!command) return;
+
+      if (command.dmOnly && messageId.includes("@g.us"))
+        return await sock.sendMessage(messageId, { text: "Command ini hanya bisa digunakan di private chat!" });
 
       if (command.maintenance) {
         if (messageId.includes("@g.us") && !config.devGrup.includes(messageId.replace("@g.us", ""))) {

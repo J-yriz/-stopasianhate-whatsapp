@@ -2,16 +2,24 @@ import fs from "fs";
 import path from "path";
 import axios, { AxiosInstance } from "axios";
 import makeWASocket, { proto, useMultiFileAuthState, WASocket } from "@whiskeysockets/baileys";
-import config from "../config";
+import config from "../configDev";
 
 interface ICommandCollection {
   name: string;
   description: string;
+  dmOnly: boolean;
   maintenance: boolean;
   execute: (message: proto.IWebMessageInfo, sock: WASocket, client: ClientBot) => void;
 }
 
 class ClientBot {
+  /*
+   * Record untuk menyimpan command yang sedang berjalan sementara
+   * seperti pada saat user melakukan konfirmasi command di kategori manga
+   */
+  public saveCmdRunKomik: Record<string, { commandName: string; title: string; chapter: string }> = {};
+
+  // Map untuk melakukan penyimpanan command
   public commandCollection: Map<string, ICommandCollection> = new Map();
   public instance: AxiosInstance = axios.create({
     withCredentials: true,

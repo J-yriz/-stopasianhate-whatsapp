@@ -7,3 +7,7 @@ dist
 auth_info
 yarn.lock
 TODO
+configDev.ts
+
+# prisma db
+prisma/migrations

@@ -1,12 +1,14 @@
 import ClientBot from "../../utility/ClientBot";
 import { proto, WASocket } from "@whiskeysockets/baileys";
 
-const response = { 
+const response = {
   name: "hallo",
   description: "Example response command",
+  dmOnly: false,
   maintenance: false,
   async execute(message: proto.IWebMessageInfo, sock: WASocket, clint: ClientBot) {
-    return await sock.sendMessage(message.key.remoteJid as string, { text: "Halo juga!" });
+    const keyRemoteJid = message.key.remoteJid as string;
+    return await sock.sendMessage(keyRemoteJid, { text: "Halo juga!" });
   },
 };
 

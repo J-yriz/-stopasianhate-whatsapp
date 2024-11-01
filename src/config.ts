@@ -1,7 +1,7 @@
 const config = {
   // Devaloper Number
-  devUser: [""],
-  devGrup: [""],
+  devUser: ["081234567890"],
+  devGrup: ["123123123123"],
 
   // Prefix for commands
   prefix: "tod!",

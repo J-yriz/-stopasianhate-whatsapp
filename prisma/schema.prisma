@@ -16,12 +16,14 @@ datasource db {
 model user {
   id                  BigInt               @id @default(autoincrement())
   number              String               @db.VarChar(255)
-  subscription_mangas subscription_manga[]
+  joinedAt            DateTime             @default(now())
+  subscription_komiks subscription_komik[]
 }
 
-model subscription_manga {
-  id         BigInt @id @default(autoincrement())
-  manga_name String @db.VarChar(255)
-  user       user   @relation(fields: [user_id], references: [id])
-  user_id    BigInt
+model subscription_komik {
+  id           BigInt @id @default(autoincrement())
+  komik_name   String @db.VarChar(255)
+  prev_chapter String @db.VarChar(255)
+  user         user   @relation(fields: [user_id], references: [id])
+  user_id      BigInt
 }

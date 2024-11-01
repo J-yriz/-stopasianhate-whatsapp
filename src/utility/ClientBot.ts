@@ -13,6 +13,13 @@ interface ICommandCollection {
 }
 
 class ClientBot {
+  /*
+   * Record untuk menyimpan command yang sedang berjalan sementara
+   * seperti pada saat user melakukan konfirmasi command di kategori manga
+   */
+  public saveCmdRunKomik: Record<string, { commandName: string; title: string; chapter: string }> = {};
+
+  // Map untuk melakukan penyimpanan command
   public commandCollection: Map<string, ICommandCollection> = new Map();
   public instance: AxiosInstance = axios.create({
     withCredentials: true,

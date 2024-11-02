@@ -4,7 +4,7 @@ import { prisma } from "../../utility/db/Prisma";
 import { proto, WASocket } from "@whiskeysockets/baileys";
 
 const list = {
-  name: "komik-listeaeaea",
+  name: "komik-list",
   description: "Komik list command",
   dmOnly: true,
   maintenance: false,

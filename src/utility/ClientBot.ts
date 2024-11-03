@@ -17,7 +17,7 @@ class ClientBot {
    * Record untuk menyimpan command yang sedang berjalan sementara
    * seperti pada saat user melakukan konfirmasi command di kategori manga
    */
-  public saveCmdRunKomik: Record<string, { commandName: string; title: string; chapter: string }> = {};
+  public saveCmdRunKomik: Record<string, { commandName: string; title: string; chapterTotal: number }> = {};
 
   // Map untuk melakukan penyimpanan command
   public commandCollection: Map<string, ICommandCollection> = new Map();
@@ -40,7 +40,14 @@ class ClientBot {
 
     // Simpan kredensial setiap kali ada perubahan
     sock.ev.on("creds.update", saveCreds);
-    (await Promise.all(fs.readdirSync(eventPath).map((file) => import(`${eventPath}/${file}`)))).forEach((event) => event.default(sock, this));
+    (
+      await Promise.all(
+        fs
+          .readdirSync(eventPath)
+          .filter((file) => file.endsWith(".js"))
+          .map((file) => import(`${eventPath}/${file}`))
+      )
+    ).forEach((event) => event.default(sock, this));
   }
 }
 

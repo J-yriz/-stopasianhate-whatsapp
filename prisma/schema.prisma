@@ -21,9 +21,9 @@ model user {
 }
 
 model subscription_komik {
-  id           BigInt @id @default(autoincrement())
-  komik_name   String @db.VarChar(255)
-  prev_chapter String @db.VarChar(255)
-  user         user   @relation(fields: [user_id], references: [id])
-  user_id      BigInt
+  id            BigInt @id @default(autoincrement())
+  komik_name    String @db.VarChar(255)
+  total_chapter BigInt
+  user          user   @relation(fields: [user_id], references: [id])
+  user_id       BigInt @unique
 }

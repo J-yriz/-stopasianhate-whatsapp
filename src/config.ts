@@ -7,6 +7,8 @@ const config = {
   prefix: "tod!",
 
   // Axios instance url
+  // https://github.com/Al-Ghozy03/komikcast-api
+  // Please use this api for your project - if error u can download this project and run it on your local machine
   baseURL: "https://komikcast-api.vercel.app",
 };
 

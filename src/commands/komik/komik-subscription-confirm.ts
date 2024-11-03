@@ -23,7 +23,7 @@ const confirm = {
       await prisma.subscription_komik.create({
         data: {
           komik_name: komikData.title,
-          prev_chapter: komikData.chapter,
+          total_chapter: komikData.chapterTotal,
           user: { connect: { id: userDataDB.id } },
         },
       });

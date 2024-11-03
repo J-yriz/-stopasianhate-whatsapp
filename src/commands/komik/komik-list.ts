@@ -23,7 +23,7 @@ const list = {
 
     let messageResponse: string = `─────= *📚 Komik List 📚* =─────\n`;
     komikDataDB.forEach((komik, index, array) => {
-      messageResponse += `*${index + 1}.* ${komik.komik_name}\n${index + 1 === array.length ? "" : "\n"}`;
+      messageResponse += `*${index + 1}.* ${komik.komik_name}${index + 1 === array.length ? "" : "\n\n"}`;
     });
     messageResponse += `\n\nUntuk melihat chapter terbaru gunakan *${config.prefix}komik-delete [nama komik]*`;
 

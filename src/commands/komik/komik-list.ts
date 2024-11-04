@@ -23,9 +23,9 @@ const list = {
 
     let messageResponse: string = `─────= *📚 Komik List 📚* =─────\n`;
     komikDataDB.forEach((komik, index, array) => {
-      messageResponse += `*${index + 1}.* ${komik.komik_name}${index + 1 === array.length ? "" : "\n\n"}`;
+      messageResponse += `*${index + 1}.* ${komik.komik_name}`;
     });
-    messageResponse += `\n\nUntuk melihat chapter terbaru gunakan *${config.prefix}komik-delete [nama komik]*`;
+    messageResponse += `\n\nUntuk menghapus berlangganan gunakan *${config.prefix}komik-delete [nama komik]*`;
 
     return await sock.sendMessage(keyRemoteJid, { text: messageResponse });
   },

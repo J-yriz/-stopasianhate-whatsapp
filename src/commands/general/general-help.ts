@@ -8,7 +8,15 @@ import { deletePrefixCommand } from "../../utility/Function";
 const listCommand: { [key: string]: string[] } = {
   example: ["hallo"],
   general: ["help"],
-  komik: ["komik-list", "komik-regis", "komik-delete [nomer komik]","komik-search [nama komik]", "komik-subs [nama komik]", "komik-subscon", "komik-subscan"],
+  komik: [
+    "komik-list",
+    "komik-regis",
+    "komik-delete [nama komik]",
+    "komik-search [nama komik]",
+    "komik-subs [nama komik]",
+    "komik-subscon",
+    "komik-subscan",
+  ],
 };
 
 const help = {
